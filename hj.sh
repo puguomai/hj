@@ -10,19 +10,19 @@ sh_ver="2.1.3"
 
 #0升级脚本
 Update_Shell(){
-	sh_new_ver=$(wget --no-check-certificate -qO- -t1 -T3 "https://raw.githubusercontent.com/veip007/hj/master/hj.sh"|grep 'sh_ver="'|awk -F "=" '{print $NF}'|sed 's/\"//g'|head -1) && sh_new_type="github"
+	sh_new_ver=$(wget --no-check-certificate -qO- -t1 -T3 "https://raw.githubusercontent.com/puguomai/hj/master/hj.sh"|grep 'sh_ver="'|awk -F "=" '{print $NF}'|sed 's/\"//g'|head -1) && sh_new_type="github"
 	[[ -z ${sh_new_ver} ]] && echo -e "${Error} 无法链接到 Github !" && exit 0
-	wget -N --no-check-certificate "https://raw.githubusercontent.com/veip007/hj/master/hj.sh" && chmod +x hj.sh
+	wget -N --no-check-certificate "https://raw.githubusercontent.com/puguomai/hj/master/hj.sh" && chmod +x hj.sh
 	echo -e "脚本已更新为最新版本[ ${sh_new_ver} ] !(注意：因为更新方式为直接覆盖当前运行的脚本，所以可能下面会提示一些报错，无视即可)" && exit 0
 }
 #—————————系统类—————————
 #1改ls颜色(debian)
 ls_color(){
-	wget https://raw.githubusercontent.com/veip007/hj/master/bashrc && mv /root/bashrc /root/.bashrc
+	wget https://raw.githubusercontent.com/puguomai/hj/master/bashrc && mv /root/bashrc /root/.bashrc
 }
 #2更改为中国时区(24h制,重启生效)
 timezone(){
-	cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && hwclock -w && echo $(curl -sSL "https://github.com/veip007/hj/raw/main/time") >> ~/.bashrc 
+	cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && hwclock -w && echo $(curl -sSL "https://github.com/puguomai/hj/raw/main/time") >> ~/.bashrc 
 }
 #3安装系统依赖
 yl(){
@@ -30,7 +30,7 @@ yl(){
 }
 #4 Nginx进程守护
 Nginx(){
-wget -N --no-check-certificate https://raw.githubusercontent.com/veip007/hj/master/ng.sh && chmod +x ng.sh && crontab -l > conf && echo "*/1 * * * * ./ng.sh" >> conf && crontab conf && rm -f conf 	
+wget -N --no-check-certificate https://raw.githubusercontent.com/puguomai/hj/master/ng.sh && chmod +x ng.sh && crontab -l > conf && echo "*/1 * * * * ./ng.sh" >> conf && crontab conf && rm -f conf 	
 }
 #5小鸡性能测试
 View_superbench(){
@@ -67,7 +67,7 @@ Install_ssr(){
 }
 #15 trojan-go
 trojan-go(){
-bash <(curl -sSL "https://raw.githubusercontent.com/veip007/hj/main/trojan-go.sh")	
+bash <(curl -sSL "https://raw.githubusercontent.com/puguomai/hj/main/trojan-go.sh")	
 }
 #16安装Tg专用代理
 Tg_socks(){
