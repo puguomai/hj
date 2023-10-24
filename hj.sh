@@ -157,7 +157,7 @@ echo && echo -e "
 " && echo 
 fi
 echo
-read -e -p " 请输入数字 [0-45]:" num
+read -e -p " 请输入数字 [0-46]:" num
 case "$num" in
 	0)
 	Update_Shell
@@ -238,9 +238,9 @@ case "$num" in
 	netflix
 	;;
 	46)
-	netflix
+	ChatGPT_test
 	;;
 	*)
-	echo "请输入正确数字 [0-45]"
+	echo "请输入正确数字 [0-46]"
 	;;
 esac
