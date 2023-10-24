@@ -8,7 +8,7 @@ sh_ver="2.1.4"
 
 
 
-#0升级脚本
+#升级脚本
 Update_Shell(){
 	sh_new_ver=$(wget --no-check-certificate -qO- -t1 -T3 "https://raw.githubusercontent.com/puguomai/hj/master/hj.sh"|grep 'sh_ver="'|awk -F "=" '{print $NF}'|sed 's/\"//g'|head -1) && sh_new_type="github"
 	[[ -z ${sh_new_ver} ]] && echo -e "${Error} 无法链接到 Github !" && exit 0
@@ -16,109 +16,114 @@ Update_Shell(){
 	echo -e "脚本已更新为最新版本[ ${sh_new_ver} ] !(注意：因为更新方式为直接覆盖当前运行的脚本，所以可能下面会提示一些报错，无视即可)" && exit 0
 }
 #—————————系统类—————————
-#1改ls颜色(debian)
+#改ls颜色(debian)
 ls_color(){
 	wget https://raw.githubusercontent.com/puguomai/hj/master/bashrc && mv /root/bashrc /root/.bashrc
 }
-#2更改为中国时区(24h制,重启生效)
+#更改为中国时区(24h制,重启生效)
 timezone(){
 	cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && hwclock -w && echo $(curl -sSL "https://github.com/puguomai/hj/raw/main/time") >> ~/.bashrc 
 }
-#3安装系统依赖
+#安装系统依赖
 yl(){
 	apt update && apt list --upgradable && apt install -y wget && apt install -y curl && apt install -y vim
 }
-#4 Nginx进程守护
+#Nginx进程守护
 Nginx(){
 wget -N --no-check-certificate https://raw.githubusercontent.com/puguomai/hj/master/ng.sh && chmod +x ng.sh && crontab -l > conf && echo "*/1 * * * * ./ng.sh" >> conf && crontab conf && rm -f conf 	
 }
-#5小鸡性能测试
+#小鸡性能测试
 View_superbench(){
 	bash <(curl -s -L https://raw.githubusercontent.com/veip007/cesu/master/superbench.sh)
 }
-#6回程线路测试
+#回程线路测试
 View_huicheng(){
 	wget -N --no-check-certificate https://raw.githubusercontent.com/veip007/huicheng/master/huicheng && chmod +x huicheng
 }
-#7docker安装
+#docker安装
 docker(){
 	wget -qO- get.docker.com | sh
 }
-#8screen安装
+#screen安装
 screen(){
 	apt install screen -y
 }
+#三网回程路由测试
+backtrace(){
+	bash <(curl -sSf https://raw.githubusercontent.com/zhanghanyun/backtrace/main/install.sh) 
+}
 #—————————代理类—————————
-#11安装V2ary_233一键
+#安装V2ary_233一键
 Install_V2ray(){
 	bash <(curl -s -L https://raw.githubusercontent.com/veip007/v2ray/master/v2.sh)
 }
-#12 V2八合一脚本
+#V2八合一脚本
 v2_8(){
 	bash <(curl -s -L https://raw.githubusercontent.com/veip007/v2ray-agent/master/install.sh)
 }
-#13 xray
+#xray
 xray(){
 bash <(curl -sSL "https://raw.githubusercontent.com/veip007/scripts/master/xray.sh")
 }
-#14安装SSR多用户版
+#安装SSR多用户版
 Install_ssr(){
 	bash <(curl -s -L https://raw.githubusercontent.com/veip007/doubi/master/ssrmu.sh)
 }
-#15 trojan-go
+#trojan-go
 trojan-go(){
 bash <(curl -sSL "https://raw.githubusercontent.com/puguomai/hj/main/trojan-go.sh")	
 }
-#16安装Tg专用代理
+#安装Tg专用代理
 Tg_socks(){
 	bash <(curl -s -L https://raw.githubusercontent.com/veip007/mtg-dist/master/install.sh)
 }
-#17安装Goflyway
+#安装Goflyway
 Install_goflyway(){
 	bash <(curl -s -L https://git.io/goflyway.sh && chmod +x goflyway.sh)
 }
-#18 Hysteria安装
+#Hysteria安装
 Hysteria(){
 bash <(curl -sSL "https://raw.githubusercontent.com/emptysuns/Hi_Hysteria/main/server/install.sh") 
 }
-#19 安装warp
+#安装warp
 warp(){
 bash <(curl -sSL "https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh")
 }
 #—————————加速类—————————
-#31一键开启默认bbr
+#一键开启默认bbr
 open_bbr(){
 	modprobe tcp_bbr && echo "tcp_bbr" | tee --append /etc/modules-load.d/modules.conf && echo "net.core.default_qdisc=fq" | tee --append /etc/sysctl.conf && echo "net.ipv4.tcp_congestion_control=bbr" | tee --append /etc/sysctl.conf && sysctl -p && sysctl net.ipv4.tcp_available_congestion_control && sysctl net.ipv4.tcp_congestion_control && lsmod | grep bbr
 }
-#32安装BBR 锐速
+#安装BBR 锐速
 bbr_ruisu(){
 	bash <(curl -s -L https://raw.githubusercontent.com/veip007/Linux-NetSpeed/master/tcp.sh)
 }
-#33谷歌 BBR2 BBRV2
+#谷歌 BBR2 BBRV2
 Google_bbr2(){
 	bash <(curl -s -L https://raw.githubusercontent.com/yeyingorg/bbr2.sh/master/bbr2.sh)
 }
 #—————————辅助类—————————
-#41安装Aria2
+#安装Aria2
 Aria2(){
 	bash <(curl -s -L https://raw.githubusercontent.com/veip007/doubi/master/aria2.sh)
 }
-#42安装云监控
+#安装云监控
 Install_status(){
 	bash <(curl -s -L https://raw.githubusercontent.com/veip007/doubi/master/status.sh)
 }
-#43一键DD包（OD源）
+#一键DD包（OD源）
 DD_OD(){
 	bash <(curl -s -L https://raw.githubusercontent.com/veip007/dd/master/dd-od.sh)
 }
-#44一键DD包（GD源）
+#一键DD包（GD源）
 DD_GD(){
 	bash <(curl -s -L https://raw.githubusercontent.com/veip007/dd/master/dd-gd.sh)
 }
-#45 Netflix解锁检测
+#Netflix解锁检测
 netflix(){
 	bash <(curl -sSL "https://github.com/veip007/Netflix_Unlock_Information/raw/main/netflix.sh")	
 }
+#ChatGPT解锁测试
 ChatGPT_test(){
 	bash <(curl -Ss "https://raw.githubusercontent.com/candyraws/OpenAI-Checker-lite/main/openai_check_lite.sh")
 }
@@ -141,6 +146,7 @@ echo && echo -e "
  ${Green_font_prefix} 3.${Font_color_suffix} 安装系统依赖           	${Green_font_prefix} 4.${Font_color_suffix} Nginx进程守护
  ${Green_font_prefix} 5.${Font_color_suffix} 小鸡性能测试            	${Green_font_prefix} 6.${Font_color_suffix} 回程线路测试:命令:./huicheng 您的IP
  ${Green_font_prefix} 7.${Font_color_suffix} docker安装              	${Green_font_prefix} 8.${Font_color_suffix} screen安装
+ ${Green_font_prefix} 9.${Font_color_suffix} 三网回程路由测试
  ——————————————————2.代理类——————————————————
  ${Green_font_prefix} 11.${Font_color_suffix} 安装V2ary_233一键      	${Green_font_prefix} 12.${Font_color_suffix} V2八合一脚本快捷命令：vasma
  ${Green_font_prefix} 13.${Font_color_suffix} xray安装               	${Green_font_prefix} 14.${Font_color_suffix} 安装SSR多用户版
@@ -185,7 +191,10 @@ case "$num" in
 	;;
 	8)
 	screen
-	;;	
+	;;
+ 	9)
+	backtrace
+	;;
 	11)
 	Install_V2ray
 	;;
