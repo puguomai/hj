@@ -117,7 +117,10 @@ DD_GD(){
 }
 #45 Netflix解锁检测
 netflix(){
-bash <(curl -sSL "https://github.com/veip007/Netflix_Unlock_Information/raw/main/netflix.sh")	
+	bash <(curl -sSL "https://github.com/veip007/Netflix_Unlock_Information/raw/main/netflix.sh")	
+}
+ChatGPT_test(){
+	bash <(curl -Ss "https://raw.githubusercontent.com/candyraws/OpenAI-Checker-lite/main/openai_check_lite.sh")
 }
 action=$1
 if [[ "${action}" == "monitor" ]]; then
@@ -134,24 +137,24 @@ echo && echo -e "
   
  ${Green_font_prefix} 0.${Font_color_suffix} 升级脚本
  ——————————————————1.系统类——————————————————
- ${Green_font_prefix} 1.${Font_color_suffix} 改ls颜色(debian)        ${Green_font_prefix} 2.${Font_color_suffix} 更改为中国时区(24h制,重启生效)
- ${Green_font_prefix} 3.${Font_color_suffix} 安装系统依赖            ${Green_font_prefix} 4.${Font_color_suffix} Nginx进程守护
- ${Green_font_prefix} 5.${Font_color_suffix} 小鸡性能测试            ${Green_font_prefix} 6.${Font_color_suffix} 回程线路测试:命令:./huicheng 您的IP
- ${Green_font_prefix} 7.${Font_color_suffix} docker安装              ${Green_font_prefix} 8.${Font_color_suffix} screen安装
+ ${Green_font_prefix} 1.${Font_color_suffix} 改ls颜色(debian)       	${Green_font_prefix} 2.${Font_color_suffix} 更改为中国时区(24h制,重启生效)
+ ${Green_font_prefix} 3.${Font_color_suffix} 安装系统依赖           	${Green_font_prefix} 4.${Font_color_suffix} Nginx进程守护
+ ${Green_font_prefix} 5.${Font_color_suffix} 小鸡性能测试            	${Green_font_prefix} 6.${Font_color_suffix} 回程线路测试:命令:./huicheng 您的IP
+ ${Green_font_prefix} 7.${Font_color_suffix} docker安装              	${Green_font_prefix} 8.${Font_color_suffix} screen安装
  ——————————————————2.代理类——————————————————
- ${Green_font_prefix} 11.${Font_color_suffix} 安装V2ary_233一键      ${Green_font_prefix} 12.${Font_color_suffix} V2八合一脚本快捷命令：vasma
- ${Green_font_prefix} 13.${Font_color_suffix} xray安装               ${Green_font_prefix} 14.${Font_color_suffix} 安装SSR多用户版
- ${Green_font_prefix} 15.${Font_color_suffix} trojan-go安装          ${Green_font_prefix} 16.${Font_color_suffix} Tg专用代理（Go版）
- ${Green_font_prefix} 17.${Font_color_suffix} 安装Goflyway           ${Green_font_prefix} 18.${Font_color_suffix} Hysteria安装
+ ${Green_font_prefix} 11.${Font_color_suffix} 安装V2ary_233一键      	${Green_font_prefix} 12.${Font_color_suffix} V2八合一脚本快捷命令：vasma
+ ${Green_font_prefix} 13.${Font_color_suffix} xray安装               	${Green_font_prefix} 14.${Font_color_suffix} 安装SSR多用户版
+ ${Green_font_prefix} 15.${Font_color_suffix} trojan-go安装          	${Green_font_prefix} 16.${Font_color_suffix} Tg专用代理（Go版）
+ ${Green_font_prefix} 17.${Font_color_suffix} 安装Goflyway           	${Green_font_prefix} 18.${Font_color_suffix} Hysteria安装
  ${Green_font_prefix} 19.${Font_color_suffix} 安装warp
  ——————————————————3.加速类——————————————————
- ${Green_font_prefix} 31.${Font_color_suffix} 一键开启默认bbr        ${Green_font_prefix} 32.${Font_color_suffix} 加速系列：Bbr系列、锐速
+ ${Green_font_prefix} 31.${Font_color_suffix} 一键开启默认bbr        	${Green_font_prefix} 32.${Font_color_suffix} 加速系列：Bbr系列、锐速
  ${Green_font_prefix} 33.${Font_color_suffix} 安装谷歌 BBR2 BBRV2
  ——————————————————4.辅助类——————————————————
- ${Green_font_prefix} 41.${Font_color_suffix} 安装Aria2              ${Green_font_prefix} 42.${Font_color_suffix} 云监控
- ${Green_font_prefix} 43.${Font_color_suffix} 傻瓜式一键DD包(OD源)   ${Green_font_prefix} 44.${Font_color_suffix} 傻瓜式一键DD包(GD源)
- ${Green_font_prefix} 45.${Font_color_suffix} Netflix解锁检测
-" && echo
+ ${Green_font_prefix} 41.${Font_color_suffix} 安装Aria2              	${Green_font_prefix} 42.${Font_color_suffix} 云监控
+ ${Green_font_prefix} 43.${Font_color_suffix} 傻瓜式一键DD包(OD源)   	${Green_font_prefix} 44.${Font_color_suffix} 傻瓜式一键DD包(GD源)
+ ${Green_font_prefix} 45.${Font_color_suffix} Netflix解锁检测        	${Green_font_prefix} 46.${Font_color_suffix} ChatGPT检测-Lite版 
+" && echo 
 fi
 echo
 read -e -p " 请输入数字 [0-45]:" num
@@ -232,6 +235,9 @@ case "$num" in
 	DD_GD
 	;;
 	45)
+	netflix
+	;;
+	46)
 	netflix
 	;;
 	*)
